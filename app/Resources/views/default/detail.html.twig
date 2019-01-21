@@ -41,16 +41,28 @@
 
     <script type="text/javascript">
     if(!localStorage.getItem('panier')){
-      localStorage.setItem('panier', JSON.stringify([]))
+      localStorage.setItem('panier', JSON.stringify([]));
+        localStorage.setItem('qty', JSON.stringify([]));
         console.log(localStorage.getItem('panier'));
     }
 
     function addPanier( idBeer){
-        var Panier = JSON.parse(localStorage.getItem('panier'));
-        Panier.push(idBeer);
-        localStorage.panier = JSON.stringify(Panier);
-    };
+        var panier = JSON.parse(localStorage.getItem('panier'));
+        var qty = JSON.parse(localStorage.getItem('qty'));
+        if(!panier.includes(idBeer)){
+            panier.push(idBeer);
+            qty.push([idBeer,1]);
+        }else{
+            for(let i=0; i<qty.length; ++i){
+                if(qty[i][0]==idBeer){
+                    qty[i][1]++;
+                }
+            }
+        }
 
+        localStorage.panier = JSON.stringify(panier);
+        localStorage.qty = JSON.stringify(qty);
+    };
 
 
 
