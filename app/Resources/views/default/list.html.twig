@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Beer Shop{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            <h1>La listes de nos bières en stock</h1>
+            <div id="beers">
+                {% for  beer  in beers %}
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ beer.name }}</h5>
+                            <p class="card-text">Tarif: {{ beer.prix }} €</p>
+                            <p class="card-text">{{ beer.volume }}</p>
+                            <a href={{ path('detail', {"id":beer.id }) }}><button type="button" class="btn btn-primary">Voir le detail</button></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block metas %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #beers{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: auto;
+            align-items: center;
+        }
+        .card{
+            width: 300px;
+            height: 250px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

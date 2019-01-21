@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Beer Shop{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+            <h1>Details de la biere: </h1>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ beer.name }}</h5>
+                    <p class="card-text">{{ beer.Brasseur }}</p>
+                    <p class="card-text">{{ beer.Description }}</p>
+                    <p class="card-text">Tarif: {{ beer.prix }} €</p>
+                    <p class="card-text">{{ beer.volume }}</p>
+                    <p class="card-text">{{ beer.type }}</p>
+                    <button type="button" class="btn btn-primary add-panier" onclick="addPanier({{ beer.id }})">Ajouter au panier</button>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block metas %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+
+
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+    if(!localStorage.getItem('panier')){
+      localStorage.setItem('panier', JSON.stringify([]))
+        console.log(localStorage.getItem('panier'));
+    }
+
+    function addPanier( idBeer){
+        var Panier = JSON.parse(localStorage.getItem('panier'));
+        console.log(Panier);
+        Panier.push(idBeer);
+        localStorage.panier = JSON.stringify(Panier);
+    };
+
+
+
+
+
+    </script>
+
+
+{% endblock %}
