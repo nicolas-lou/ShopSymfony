@@ -14,4 +14,6 @@ class PanierService
     private $panier= [];
 
 
+
+
 }

@@ -14,7 +14,7 @@
                     <p class="card-text">Tarif: {{ beer.prix }} €</p>
                     <p class="card-text">{{ beer.volume }}</p>
                     <p class="card-text">{{ beer.type }}</p>
-                    <button type="button" class="btn btn-primary add-panier" onclick="addPanier({{ beer.id }})">Ajouter au panier</button>
+                    <button type="button" class="btn btn-primary add-panier" onclick="addPanier({{ beer | json_encode }})">Ajouter au panier</button>
 
                 </div>
             </div>
@@ -46,20 +46,19 @@
         console.log(localStorage.getItem('panier'));
     }
 
-    function addPanier( idBeer){
+    function addPanier( Beer){
         var panier = JSON.parse(localStorage.getItem('panier'));
         var qty = JSON.parse(localStorage.getItem('qty'));
-        if(!panier.includes(idBeer)){
-            panier.push(idBeer);
-            qty.push([idBeer,1]);
+        if(!panier.includes(Beer)){
+            panier.push(Beer);
+            qty.push([Beer.id,1]);
         }else{
             for(let i=0; i<qty.length; ++i){
-                if(qty[i][0]==idBeer){
+                if(qty[i][0]==Beer.id){
                     qty[i][1]++;
                 }
             }
         }
-
         localStorage.panier = JSON.stringify(panier);
         localStorage.qty = JSON.stringify(qty);
     };

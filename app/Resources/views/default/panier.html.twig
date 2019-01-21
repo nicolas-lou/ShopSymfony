@@ -26,4 +26,13 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        var items = JSON.parse(localStorage.panier);
+        var qty = JSON.parse(localStorage.qty);
+
+        console.log(items);
+        console.log(qty);
+
+
+    </script>
 {% endblock %}
