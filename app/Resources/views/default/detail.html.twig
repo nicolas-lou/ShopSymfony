@@ -47,7 +47,6 @@
 
     function addPanier( idBeer){
         var Panier = JSON.parse(localStorage.getItem('panier'));
-        console.log(Panier);
         Panier.push(idBeer);
         localStorage.panier = JSON.stringify(Panier);
     };
