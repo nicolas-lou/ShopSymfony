@@ -9,17 +9,14 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ beer.name }}</h5>
-                    <p class="card-text">{{ beer.Brasseur }}</p>
-                    <p class="card-text">{{ beer.Description }}</p>
-                    <p class="card-text">Tarif: {{ beer.prix }} €</p>
-                    <p class="card-text">{{ beer.volume }}</p>
-                    <p class="card-text">{{ beer.type }}</p>
-                    <button type="button" class="btn btn-primary add-panier" onclick="addPanier({{ beer | json_encode }})">Ajouter au panier</button>
-
+                    <p class="card-text">{{ beer.brasseur }}</p>
+                    <p class="card-text"> {{ beer.category }}</p>
+                    <p class="card-text">{{ beer.info }}</p>
+                    <p class="card-text">{{ beer.volume }} cl</p>
+                    <p class="card-text">{{ beer.price }} €</p>
+                    <button type="button" class="btn btn-primary add-panier" onclick="addPanier({{ beer.id}})">Ajouter au panier</button>
                 </div>
             </div>
-
-
         </div>
     </div>
 
@@ -46,15 +43,17 @@
         console.log(localStorage.getItem('panier'));
     }
 
-    function addPanier( Beer){
+    function addPanier( idBeer){
+        console.log(name);
         var panier = JSON.parse(localStorage.getItem('panier'));
         var qty = JSON.parse(localStorage.getItem('qty'));
-        if(!panier.includes(Beer)){
-            panier.push(Beer);
-            qty.push([Beer.id,1]);
+
+        if(!panier.includes(idBeer)){
+            panier.push(idBeer);
+            qty.push([idBeer,1]);
         }else{
             for(let i=0; i<qty.length; ++i){
-                if(qty[i][0]==Beer.id){
+                if(qty[i][0]==idBeer){
                     qty[i][1]++;
                 }
             }

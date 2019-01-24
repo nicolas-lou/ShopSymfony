@@ -19,8 +19,9 @@ class PanierController extends Controller
      * @Route("/panier", name="panier")
      */
     public function panierAction(BeerService $beerService){
+        $beers = $beerService->getAllBeers();
 
-        return $this->render('default/panier.html.twig');
+        return $this->render('default/panier.html.twig', ['beers'=>$beers]);
     }
 
 

@@ -11,8 +11,8 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{ beer.name }}</h5>
-                            <p class="card-text">Tarif: {{ beer.prix }} €</p>
-                            <p class="card-text">{{ beer.volume }}</p>
+                            <p class="card-text"> {{ beer.category }} €</p>
+                            <p class="card-text">{{ beer.price }} €</p>
                             <a href={{ path('detail', {"id":beer.id }) }}><button type="button" class="btn btn-primary">Voir le detail</button></a>
                         </div>
                     </div>

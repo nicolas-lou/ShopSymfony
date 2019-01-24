@@ -38,6 +38,15 @@ class DefaultController extends Controller
         return $this->render('default/register.html.twig');
     }
 
+    /**
+     * @Route("/addBeer", name="addBeer")
+     */
+    public function addBeerAction(BeerService $beerService){
+
+
+        return $this->render('default/addBeer.html.twig');
+    }
+
 
 
 }
